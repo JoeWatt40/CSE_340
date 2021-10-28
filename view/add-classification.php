@@ -36,7 +36,8 @@
 
             <form action="/phpmotors/vehicles/index.php" method="POST">
                 <label for="classificationName">New Classification Name:</label><br>
-                <input type="text" id="classificationName" name="classificationName"><br>                
+                <p>(Max size: 30)</p>
+                <input type="text" id="classificationName" name="classificationName" maxlength="30" focus required><br>                
                 <input type="submit" name="submit" id="regbtn" value="Add Classification"> 
                 <input type="hidden" name="action" value="addClass">
             </form>

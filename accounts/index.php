@@ -63,7 +63,8 @@ switch ($action){
             exit; 
         }
 
-        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
         if($regOutcome === 1){
             $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include '../view/login.php';
