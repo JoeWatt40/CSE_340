@@ -39,7 +39,7 @@ switch ($action){
         $checkPassword = checkPassword($clientPassword);
 
         if(empty($clientEmail) || empty($checkPassword)){
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $message = '<p>Pleaseasdf provide information for all empty form fields.</p>';
             include '../view/login.php';
             exit; 
         } else {
