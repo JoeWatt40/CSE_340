@@ -1,0 +1,142 @@
+body {
+    background-image: url("../images/site/checkerboard.jpg");
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: right;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.content {
+    border: 2px solid #4c96d7;
+    border-radius: 2px;
+    background: #ffffff;
+}
+
+.navigation {  
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: column wrap;
+    padding: 0;    
+    background: #535252;
+}
+
+.navigation li {
+    padding: .75em;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #ffffff
+}
+
+.navigation a:hover {
+    color: black;
+}
+
+.welcome .car {
+    margin: 0 auto;
+}
+
+.order {
+    display: flex;
+    flex-flow: column;
+}
+
+.welcome ul {
+    padding: 0;
+    margin: 0;
+}
+.welcome li {
+    list-style: none;
+    color:#3276b3;
+}
+
+.car {
+    width: 100%;
+    height: 100%;
+}
+
+.own {
+    width: 125px;
+    float: left;
+}
+
+/* Delorean reviews */
+.reviews li {
+    padding: 5px;
+}
+
+/* Upgrades */
+
+.upgrades ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 25px;
+    padding: 0;
+    width: 350px;
+}
+
+.upgrades li {
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+    text-decoration: underline; 
+}
+
+.upgrades img {
+    height: 80px;
+    display: block;
+}
+
+/*footer */
+footer {
+    border-top: 2px solid #3a3a3a;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .navigation {
+        flex-flow: row wrap;
+    }
+
+    .header img {
+        width: 290px;
+        height: 104px;
+    }
+
+    .welcome ul {
+        margin-left: 40px;
+    }
+
+    .own {
+        order: 2;
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+    }
+
+    .car {
+        order: 1;
+    }
+
+    .info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .info>.upgrades {
+        grid-row: 1;
+    }
+}

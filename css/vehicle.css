@@ -1,0 +1,8 @@
+input, select{
+    margin-bottom: 10px;
+}
+
+.classification {
+    width: 100px;
+    height: 21px;
+}
