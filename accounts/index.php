@@ -54,7 +54,7 @@ switch ($action){
 
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
             $message = '<p>Please provide information for all empty form fields.</p>';
-            include '../view/registration.php';
+            include './view/registration.php';
             exit; 
         }
 
