@@ -1,5 +1,9 @@
 <?php
 
+// ALTER TABLE `clients`
+// MODIFY `clientId` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
     function checkEmail($clientEmail) {
         $valEmail = filter_var($clientEmail, FILTER_VALIDATE_EMAIL);
         return $valEmail;
@@ -17,5 +21,6 @@
         $navList .= "<li><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
         }
         $navList .= '</ul>';
+        return $navList;
     }
 ?>
