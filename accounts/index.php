@@ -41,7 +41,7 @@ switch ($action){
             $message = "<p>Thanks for logging in.</p>";
         }
 
-        include '../view/login.php';        
+        include '../view/home.php';        
         break; 
     case 'register':
         $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
@@ -54,7 +54,7 @@ switch ($action){
 
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
             $message = '<p>Please provide information for all empty form fields.</p>';
-            include './view/registration.php';
+            include '../view/registration.php';
             exit; 
         }
 

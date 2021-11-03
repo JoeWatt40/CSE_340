@@ -37,8 +37,8 @@
                 </ul>
 
                 <div class="order">
-                    <img class="own" src="./images/site/own_today.png" alt="own today image">
-                    <img class="car" src="./images/delorean.jpg" alt="delorean image">
+                    <img class="own" src="/phpmotors/images/site/own_today.png" alt="own today image">
+                    <img class="car" src="/phpmotors/images/delorean.jpg" alt="delorean image">
                 </div>              
             </div>
 
@@ -57,10 +57,10 @@
                 <div class="upgrades">
                     <h2>Delorean Upgrades</h2> 
                     <ul>
-                        <li><img src="./images/upgrades/flux-cap.png" alt="flux capacitor"><label>Flux Capacitor</label></li>
-                        <li><img src="./images/upgrades/flame.jpg" alt="flames"><label>Flame Decals</label></li>
-                        <li><img src="./images/upgrades/bumper_sticker.jpg" alt="bumper sticker"><label>Stickers</label></li>
-                        <li><img src="./images/upgrades/hub-cap.jpg" alt="hub caps"><label>Caps</label></li>
+                        <li><img src="/phpmotors/images/upgrades/flux-cap.png" alt="flux capacitor"><label>Flux Capacitor</label></li>
+                        <li><img src="/phpmotors/images/upgrades/flame.jpg" alt="flames"><label>Flame Decals</label></li>
+                        <li><img src="/phpmotors/images/upgrades/bumper_sticker.jpg" alt="bumper sticker"><label>Stickers</label></li>
+                        <li><img src="/phpmotors/images/upgrades/hub-cap.jpg" alt="hub caps"><label>Caps</label></li>
                     </ul>                
                 </div>
             </div>
@@ -72,6 +72,6 @@
         </footer>
     </div>
 
-    <script src="./js/footer.js"></script>
+    <script src="/phpmotors/js/footer.js"></script>
 </body>
 </html>
