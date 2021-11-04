@@ -10,17 +10,13 @@
 <body>
     
     <div class="content">
-
-        <header>
-
-            <div class="header">
-                <img src="/phpmotors/images/site/logo.png" alt="php motors logo">
-                <h1><a href="/phpmotors/accounts/index.php?action=login">My Account</a></h1>
-            </div>            
-                
-            <nav>
-                <?php echo $navList; ?>
-            </nav>
+        <header> 
+            <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';?>
+        </header>
+                     
+        <nav>
+            <?php echo $navList; ?>
+        </nav>
 
         </header>
 
@@ -72,6 +68,5 @@
         </footer>
     </div>
 
-    <script src="/phpmotors/js/footer.js"></script>
 </body>
 </html>

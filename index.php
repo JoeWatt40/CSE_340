@@ -16,6 +16,10 @@ $action = filter_input(INPUT_GET, 'action');
     $action = filter_input(INPUT_POST, 'action');
 }
 
+if(isset($_COOKIE['firstname'])) {
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
+
 //takes input variable to direct site to page
 switch ($action){
     case 'login':

@@ -4,12 +4,20 @@ body {
 
 .header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: right;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.header span {
+    text-align: center;
 }
 
 .header a {
     text-decoration: none;
+}
+
+.header h1 {
+    text-align: right;
 }
 
 .content {

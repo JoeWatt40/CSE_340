@@ -18,6 +18,10 @@ $action = filter_input(INPUT_GET, 'action');
     $action = filter_input(INPUT_POST, 'action');
 }
 
+if(isset($_COOKIE['firstname'])){
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
+
 //takes input variable to direct site to page
 switch ($action){
     case 'Register':
@@ -32,13 +36,15 @@ switch ($action){
 
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
-
+        
         if(empty($clientEmail) || empty($checkPassword)){
-            $message = '<p>Pleaseasdf provide information for all empty form fields.</p>';
+            $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/login.php';
             exit; 
         } else {
             $message = "<p>Thanks for logging in.</p>";
+            include '../view/login.php';
+            exit;
         }
 
         include '../view/home.php';        
@@ -52,6 +58,16 @@ switch ($action){
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
 
+        //checking for existing email address
+        $existingEmail = checkExistingEmail($clientEmail);
+
+        // Check for existing email address in the table
+        if($existingEmail){
+            $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+            include '../view/login.php';
+            exit;
+        }
+
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/registration.php';
@@ -61,6 +77,7 @@ switch ($action){
         $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
         $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
         if($regOutcome === 1){
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include '../view/login.php';
             exit;
