@@ -1,5 +1,8 @@
 <?php
 
+//starts a session
+session_start();
+
 //index file in accounts folder
 require_once '../library/connections.php';
 require_once '../model/main-model.php';
@@ -47,7 +50,23 @@ switch ($action){
             exit;
         }
 
-        include '../view/home.php';        
+        $clientData = getClient($clientEmail);
+        $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+        if(!$hashCheck) {
+        $message = '<p class="notice">Please check your password and try again.</p>';
+        include '../view/login.php';
+        exit;
+        }
+       
+        $_SESSION['loggedin'] = TRUE;
+       
+        //remove password from the array
+        array_pop($clientData);
+
+        // Store the array into the session
+        $_SESSION['clientData'] = $clientData;
+       
+        include '../view/admin.php';        
         break; 
     case 'register':
         $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
@@ -78,8 +97,8 @@ switch ($action){
         $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
         if($regOutcome === 1){
             setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-            $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
-            include '../view/login.php';
+            $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
+            header('Location: /phpmotors/accounts/?action=login');
             exit;
         } else {
             $message = "<p>Sorry $clientFirstname, but the registration failed. Please try again.</p>";
@@ -92,7 +111,7 @@ switch ($action){
         include './teach.php';
         break;
     default:
-        include '../view/template.php';
+        include '../view/admin.php';
         
     break;
 }

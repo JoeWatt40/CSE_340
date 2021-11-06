@@ -1,5 +1,8 @@
 <?php
 
+//starts a session
+session_start();
+
 //brings files into the site
 require_once 'library/connections.php';
 require_once 'model/main-model.php';
