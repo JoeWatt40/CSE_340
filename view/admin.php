@@ -34,12 +34,12 @@
                 
             <ul>
                 <li>First Name:<?php echo $_SESSION['clientData']['clientFirstname']?></li>
-                <li>Last Name:<?php echo $_SESSION['clientData']['clientFirstname']?></li>
+                <li>Last Name:<?php echo $_SESSION['clientData']['clientLastname']?></li>
                 <li>Email:<?php echo $_SESSION['clientData']['clientEmail']?></li>
             </ul>  
             
             <?php 
-                if($clientData['clientLevel'] > 1 ) {
+                if($_SESSION['clientData']['clientLevel'] > 1 ) {
                    echo "<p><a href='/phpmotors/accounts/index.php?action=vehicle'>Vehicle Management</a></p>"; 
                 }
             ?>

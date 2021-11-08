@@ -40,17 +40,14 @@ switch ($action){
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
         
+        $clientData = getClient($clientEmail);
+
         if(empty($clientEmail) || empty($checkPassword)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/login.php';
             exit; 
-        } else {
-            $message = "<p>Thanks for logging in.</p>";
-            include '../view/login.php';
-            exit;
         }
-
-        $clientData = getClient($clientEmail);
+                
         $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
         if(!$hashCheck) {
         $message = '<p class="notice">Please check your password and try again.</p>';
@@ -109,6 +106,17 @@ switch ($action){
         break;
     case 'email':
         include './teach.php';
+        break;
+    case 'vehicle':
+        include '../vehicles/index.php';
+        break;
+    case 'Logout':
+        unset($_SESSION['loggedin']);
+        unset($_SESSION['clientData']);
+        unset($_SESSION['message']);
+        unset($_SESSION['messageVehicle']);
+        session_destroy();
+        header('Location: /phpmotors/');
         break;
     default:
         include '../view/admin.php';

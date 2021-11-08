@@ -2,7 +2,7 @@
 /* vehicles controller */
 
 //starts a session
-session_start();
+//session_start();
 
 //brings files into the site
 require_once '../library/connections.php';

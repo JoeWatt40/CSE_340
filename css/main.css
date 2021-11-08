@@ -9,6 +9,7 @@ body {
 }
 
 .header span {
+    grid-column: 2/3;
     text-align: center;
 }
 
@@ -17,7 +18,8 @@ body {
 }
 
 .header h1 {
-    text-align: right;
+    grid-column: 3/4;
+    text-align: center;
 }
 
 .content {

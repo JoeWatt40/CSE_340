@@ -32,7 +32,7 @@
                 <label for="clientEmail">Email:</label><br>
                 <input type="email" id="clientEmail" name="clientEmail" required autofocus <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?>><br>
                 <label for="clientPassword">Password:</label><br>
-                <input type="text" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"> 
+                <input type="password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"> 
                 <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
                 <input type="hidden" name="action" value="Login">
                 <input type="submit" value="Login">         
