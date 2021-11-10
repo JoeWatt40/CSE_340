@@ -119,8 +119,7 @@ switch ($action){
         header('Location: /phpmotors/');
         break;
     default:
-        include '../view/admin.php';
-        
+        include '../view/admin.php';        
     break;
 }
 ?>
