@@ -2,7 +2,7 @@
 /* vehicles controller */
 
 //starts a session
-//session_start();
+session_start();
 
 //brings files into the site
 require_once '../library/connections.php';
@@ -17,11 +17,21 @@ $classNames = getClass();
 $navList = navList($classifications);
 
 $classificationList = '<select name="classificationId">';
-foreach($classifications as $classification) {
-    $classificationList .= "<option value='$classification[classificationId]'>
-    $classification[classificationName]</option>";
-}
-$classificationList .= '</select>';
+$classificationList .= "<option>Choose a Classification</option>";
+foreach ($classifications as $classification) {
+    $classificationList .= "<option value='$classification[classificationId]'";
+    if(isset($classificationId)){
+     if($classification['classificationId'] === $classificationId){
+      $classificationList .= ' selected ';
+     }
+    } elseif(isset($invInfo['classificationId'])){
+    if($classification['classificationId'] === $invInfo['classificationId']){
+     $classificationList .= ' selected ';
+    }
+   }
+   $classificationList .= ">$classification[classificationName]</option>";
+   }
+   $classificationList .= '</select>';
 
 //main site controller
 $action = filter_input(INPUT_GET, 'action');
