@@ -108,7 +108,7 @@ switch ($action){
         include './teach.php';
         break;
     case 'vehicle':
-        include '../vehicles/index.php';
+        include '../view/vehicle-man.php';
         break;
     case 'Logout':
         unset($_SESSION['loggedin']);

@@ -114,10 +114,43 @@ switch ($action){
         include '../view/vehicle-update.php';
         exit;
         break;
+    case 'updateVehicle':
+        $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+        $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING);
+        $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING);
+        $invDescription = filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING);
+        $invImage = filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING);
+        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING);
+        $invPrice = filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        $invStock = filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT);
+        $invColor = filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        if (empty($classificationId) || empty($invMake) || empty($invModel) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invColor)) {
+        $message = '<p>Please complete all information for the updated item! Double check the classification of the item.</p>';
+        include '../view/vehicle-update.php';
+        exit;
+        }
+        $updateResult = updateVehicle($classificationId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $invId );
+        if ($updateResult) {
+            $message = "<p class='notify'>Congratulations, the $invMake $invModel was successfully updated.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p>Error. The $invMake $invModel was not updated.</p>";
+            include '../view/vehicle-update.php';
+            exit;
+        }
+        break;
+    case 'vehicle':
+        $classificationList = buildClassificationList($classifications);
+        include '../view/vehicle-man.php';  
+        break;
     default:
 
         $classificationList = buildClassificationList($classifications);
-        include '../view/vehicle-man.php';        
+        include '../view/admin.php';        
     break;
 
 }

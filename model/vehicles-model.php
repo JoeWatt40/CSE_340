@@ -61,4 +61,31 @@ function getInvItemInfo($invId){
     return $invInfo;
    }
 
+//funciton to update vehicle data
+function updateVehicle($invId, $invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId) {
+
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE inventory SET invMake = :invMake, invModel = :invModel, 
+        invDescription = :invDescription, invImage = :invImage, 
+        invThumbnail = :invThumbnail, invPrice = :invPrice, 
+        invStock = :invStock, invColor = :invColor, 
+        classificationId = :classificationId WHERE invId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
+    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
+    $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
+    $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
+    $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
+    $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
+    $stmt->bindValue(':classificationId', $classificationId, PDO::PARAM_STR);
+    
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
 ?>
