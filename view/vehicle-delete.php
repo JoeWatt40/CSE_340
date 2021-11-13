@@ -47,9 +47,9 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
                 <label>Classification:</label><br>
                 <?php echo $classificationList ?><br>
                 <label for="invMake">Make:</label><br>
-                <input type="text" name="invMake" id="invMake" readonly<?php if(isset($invMake)){ echo "value='$invMake'"; } elseif(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?>><br>
+                <input type="text" name="invMake" id="invMake" readonly <?php if(isset($invMake)){ echo "value='$invMake'"; } elseif(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?>><br>
                 <label for="invModel">Model:</label><br>
-                <input type="text" name="invModel" id="invModel"  readonlu<?php if(isset($invModel)){ echo "value='$invModel'"; } elseif(isset($invInfo['invModel'])) {echo "value='$invInfo[invModel]'"; }?>><br>
+                <input type="text" name="invModel" id="invModel"  readonly <?php if(isset($invModel)){ echo "value='$invModel'"; } elseif(isset($invInfo['invModel'])) {echo "value='$invInfo[invModel]'"; }?>><br>
                 <label for="invDescription">Description:</label><br>
                 <textarea id="invDescription" name="invDescription" readonly>
                     <?php if(isset($invDescription)){ echo $invDescription; } elseif(isset($invInfo['invDescription'])) {echo $invInfo['invDescription']; }?></textarea><br>

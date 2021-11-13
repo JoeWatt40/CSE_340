@@ -159,6 +159,7 @@ switch ($action){
             header('location: /phpmotors/vehicles/');
             exit;
         }
+        include '../view/vehicle-man.php';
         break;
     case 'vehicle':
         $classificationList = buildClassificationList($classifications);

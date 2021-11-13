@@ -34,6 +34,7 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
             echo "Modify $invInfo[invMake] $invInfo[invModel]";} 
             elseif(isset($invMake) && isset($invModel)) { 
             echo "Modify$invMake $invModel"; }?>
+            
         </h1>
 
             <?php
@@ -41,11 +42,10 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
                 echo $message;
                 }
             ?>
-
-            <form action="/phpmotors/vehicles/index.php" method="POST">
             
-                <label>Classification:</label><br>
-               
+            <form action="/phpmotors/vehicles/index.php" method="POST">
+                
+                <label>Classification:</label><br>               
                 <?php if (isset($classificationList)) { 
                      echo $classificationList; 
                 }?><br>
