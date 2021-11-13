@@ -56,6 +56,7 @@ switch ($action){
         }
        
         $_SESSION['loggedin'] = TRUE;
+        $_SESSION['message'] = '<h2 class="notice">Thank you for logging in.</h2>';
        
         //remove password from the array
         array_pop($clientData);
@@ -117,6 +118,34 @@ switch ($action){
         unset($_SESSION['messageVehicle']);
         session_destroy();
         header('Location: /phpmotors/');
+        break;
+    case 'updateAccount':
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        
+        $clientEmail = checkEmail($clientEmail);
+
+        if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit; 
+        }
+
+        $regOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+        if($regOutcome === 1){
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            $_SESSION['message'] = "Your account information has been updated.";
+            include '../view/admin.php';
+            exit;
+        } else {
+            $message = "<p>Sorry $clientFirstname, but the update failed. Please try again.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
+
+        include '../view/client-update.php';
         break;
     default:
         include '../view/admin.php';        

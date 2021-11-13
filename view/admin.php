@@ -25,22 +25,17 @@
 
         <main>
         
-            <h1>Welcome to PHP Motors 
-                <?php echo $_SESSION['clientData']['clientFirstname'];?>
-            </h1>
+            <h1>Welcome to PHP Motors</h1>
 
             <?php if (isset($_SESSION['message'])) {
                 echo $_SESSION['message'];}?>
-                
-            <ul>
-                <li>First Name:<?php echo $_SESSION['clientData']['clientFirstname']?></li>
-                <li>Last Name:<?php echo $_SESSION['clientData']['clientLastname']?></li>
-                <li>Email:<?php echo $_SESSION['clientData']['clientEmail']?></li>
-            </ul>  
+
+            <h3><a href="/phpmotors/accounts/index.php?action=updateAccount">Update Account Information</a></h3>
             
             <?php 
                 if($_SESSION['clientData']['clientLevel'] > 1 ) {
-                   echo "<p><a href='/phpmotors/vehicles/index.php?action=vehicle'>Vehicle Management</a></p>"; 
+                    echo "<h3>Click on the link below to manage vehicle inventory.</h3>";
+                   echo "<p><a href=/phpmotors/vehicles/index.php?action=vehicle'>Vehicle Management</a></p>"; 
                 }
             ?>
            

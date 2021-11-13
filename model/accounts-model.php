@@ -43,4 +43,20 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     $stmt->closeCursor();
     return $clientData;
    }
+
+   function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId){
+    // Create a connection object using the phpmotors connection function
+    $db = phpmotorsConnect();
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname,clientEmail = :clientEmail WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    // Return the indication of success
+    return $rowsChanged;
+   }
 ?>
