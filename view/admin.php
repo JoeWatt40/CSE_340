@@ -40,7 +40,7 @@
             
             <?php 
                 if($_SESSION['clientData']['clientLevel'] > 1 ) {
-                   echo "<p><a href='/phpmotors/accounts/index.php?action=vehicle'>Vehicle Management</a></p>"; 
+                   echo "<p><a href='/phpmotors/vehicles/index.php?action=vehicle'>Vehicle Management</a></p>"; 
                 }
             ?>
            

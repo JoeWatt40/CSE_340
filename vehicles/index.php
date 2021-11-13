@@ -20,18 +20,9 @@ $classificationList = '<select name="classificationId">';
 $classificationList .= "<option>Choose a Classification</option>";
 foreach ($classifications as $classification) {
     $classificationList .= "<option value='$classification[classificationId]'";
-    if(isset($classificationId)){
-     if($classification['classificationId'] === $classificationId){
-      $classificationList .= ' selected ';
-     }
-    } elseif(isset($invInfo['classificationId'])){
-    if($classification['classificationId'] === $invInfo['classificationId']){
-     $classificationList .= ' selected ';
-    }
-   }
-   $classificationList .= ">$classification[classificationName]</option>";
-   }
-   $classificationList .= '</select>';
+    $classificationList .= ">$classification[classificationName]</option>";
+}
+    $classificationList .= '</select>';
 
 //main site controller
 $action = filter_input(INPUT_GET, 'action');
@@ -143,12 +134,37 @@ switch ($action){
             exit;
         }
         break;
+    case 'del':
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        $invInfo = getInvItemInfo($invId);
+        if(count($invInfo) < 1){
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        include '../view/vehicle-delete.php';
+        break;
+    case 'deleteVehicle':
+        $invMake = filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING);
+        $invModel = filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING);
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        $deleteResult = deleteVehicle($invId );
+        if ($deleteResult) {
+            $message = "<p class='notify'>The $invMake $invModel was successfully deleted from the inventory.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p class='notify'>THE $invMake $invModel WAS NOT DELTED FROM THE INVENTORY.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        }
+        break;
     case 'vehicle':
         $classificationList = buildClassificationList($classifications);
         include '../view/vehicle-man.php';  
         break;
     default:
-
         $classificationList = buildClassificationList($classifications);
         include '../view/admin.php';        
     break;

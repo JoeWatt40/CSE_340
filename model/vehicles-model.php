@@ -88,4 +88,17 @@ function updateVehicle($invId, $invMake, $invModel, $invDescription, $invImage, 
     return $rowsChanged;
 }
 
+//funciton to delete vehicle from the inventory
+function deleteVehicle($invId) {
+
+    $db = phpmotorsConnect();
+    $sql = 'DELETE FROM inventory WHERE invId = :invId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);    
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
+
 ?>
