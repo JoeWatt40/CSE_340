@@ -99,7 +99,8 @@ switch ($action){
     case 'mod':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
-        if(count($invInfo)<1){
+
+        if(count($invInfo) <1 ){
             $message = 'Sorry, no vehicle information could be found.';
         }
         include '../view/vehicle-update.php';
