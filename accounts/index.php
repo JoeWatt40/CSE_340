@@ -162,7 +162,7 @@ switch ($action){
         $checkPassword = checkPassword($clientPassword);
 
         if(empty($checkPassword)){
-            $_SESSION['message'] = '<p>Please provide information for all empty form fields.</p>';
+            $_SESSION['message'] = '<p>Please provide a password with the correct format.</p>';
             include '../view/client-update.php';
             exit; 
         }

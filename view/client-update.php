@@ -49,6 +49,7 @@
             <form action="/phpmotors/accounts/index.php" method="POST">
                 <fieldset>
                     <legend>Change Your Current Password</legend>
+                    <label for="clientPassword">Update password</label><br>
                     <input type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                     <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
                     <input type="submit" name="submit" id="passbtn" value="Change Your Password"> 
