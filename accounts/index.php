@@ -33,8 +33,8 @@ switch ($action){
     case 'login':
         include '../view/login.php';        
         break; 
-    case 'admin': 
-        include '../view/admin.php';
+    case 'update': 
+        include '../view/client-update.php';
         break;
     case 'Login':
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
@@ -136,6 +136,7 @@ switch ($action){
             exit; 
         }
 
+        
         $regOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
         if($regOutcome === 1){
             $clientData = getClient($clientEmail);
@@ -153,6 +154,30 @@ switch ($action){
   
         $_SESSION['clientData'] = $clientData;
 
+        include '../view/client-update.php';
+        break;
+    case 'updatePassword':
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        $checkPassword = checkPassword($clientPassword);
+
+        if(empty($checkPassword)){
+            $_SESSION['message'] = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/client-update.php';
+            exit; 
+        }
+
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+        $regOutcome = updatePassword($clientId, $hashedPassword);
+        if($regOutcome === 1){
+            $_SESSION['message'] = "Your account information has been updated.";
+            include '../view/admin.php';
+            exit;
+        } else {
+            $message = "<p>Sorry your password was not updated.</p>";
+            include '../view/client-update.php';
+            exit;
+        }
         include '../view/client-update.php';
         break;
     default:

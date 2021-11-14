@@ -39,25 +39,26 @@
                     <input type="text" id="clientLastname" name="clientLastname" required value="<?php echo $_SESSION['clientData']['clientLastname']; ?>"><br> 
                     <label for="clientEmail">Email:</label><br>
                     <input type="email" id="clientEmail" name="clientEmail" required value="<?php echo $_SESSION['clientData']['clientEmail']; ?>" ><br>
-                    <input type="submit" name="submit" id="regbtn" value="Update Account Information"> 
+                    <input type="submit" name="submit" id="updatebtn" value="Update Account Information"> 
                     <input type="hidden" name="action" value="updateAccount">
                     <input type="hidden" name="clientId" value="
                     <?php echo $_SESSION['clientData']['clientId']; ?>">
                 </fieldset>
             </form>
 
-            <form action="">
+            <form action="/phpmotors/accounts/index.php" method="POST">
                 <fieldset>
-                    <legend>Change Password</legend>
+                    <legend>Change Your Current Password</legend>
                     <input type="password" name="clientPassword" id="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
                     <span>Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character</span><br>
-
+                    <input type="submit" name="submit" id="passbtn" value="Change Your Password"> 
+                    <input type="hidden" name="action" value="updatePassword">
+                    <input type="hidden" name="clientId" value="
+                    <?php echo $_SESSION['clientData']['clientId']; ?>">
                 </fieldset>
             </form>
 
-            <input type="submit" name="submit" id="regbtn" value="Update Account"> 
-            <input type="hidden" name="action" value="updateAccount">
-           
+
         </main>
         
         <footer>

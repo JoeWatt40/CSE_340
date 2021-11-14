@@ -30,7 +30,7 @@
             <?php if (isset($_SESSION['message'])) {
                 echo $_SESSION['message'];}?>
 
-            <h3><a href="/phpmotors/accounts/index.php?action=updateAccount">Update Account Information</a></h3>
+            <h3><a href="/phpmotors/accounts/index.php?action=update">Update Account Information</a></h3>
             
             <?php 
                 if($_SESSION['clientData']['clientLevel'] > 1 ) {
