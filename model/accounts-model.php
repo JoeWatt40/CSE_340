@@ -45,7 +45,6 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
    }
 
    function updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId){
-    // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, clientLastname = :clientLastname,clientEmail = :clientEmail WHERE clientId = :clientId';
     $stmt = $db->prepare($sql);
@@ -56,7 +55,6 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     $stmt->execute();
     $rowsChanged = $stmt->rowCount();
     $stmt->closeCursor();
-    // Return the indication of success
     return $rowsChanged;
    }
 ?>

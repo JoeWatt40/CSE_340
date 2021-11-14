@@ -33,6 +33,9 @@ switch ($action){
     case 'login':
         include '../view/login.php';        
         break; 
+    case 'admin': 
+        include '../view/admin.php';
+        break;
     case 'Login':
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING));
@@ -126,16 +129,17 @@ switch ($action){
         $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
         
         $clientEmail = checkEmail($clientEmail);
-
+      
         if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)){
-            $message = '<p>Please provide information for all empty form fields.</p>';
+            $_SESSION['message'] = '<p>Please provide information for all empty form fields.</p>';
             include '../view/client-update.php';
             exit; 
         }
 
         $regOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
         if($regOutcome === 1){
-            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
+            $clientData = getClient($clientEmail);
+            $_SESSION['clientData'] = $clientData;
             $_SESSION['message'] = "Your account information has been updated.";
             include '../view/admin.php';
             exit;
@@ -144,6 +148,10 @@ switch ($action){
             include '../view/client-update.php';
             exit;
         }
+
+        $clientData = getClient($clientEmail);
+  
+        $_SESSION['clientData'] = $clientData;
 
         include '../view/client-update.php';
         break;
