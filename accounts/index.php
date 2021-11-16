@@ -181,7 +181,7 @@ switch ($action){
         include '../view/client-update.php';
         break;
     default:
-        include '../view/admin.php';        
+        include '../view/vehicle-man.php';        
     break;
 }
 ?>

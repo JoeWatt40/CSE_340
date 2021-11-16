@@ -32,6 +32,10 @@ $action = filter_input(INPUT_GET, 'action');
 
 //takes input variable to direct site to page
 switch ($action){
+    case 'manage':
+        $classificationList = buildClassificationList($classifications);
+        include '../view/vehicle-man.php';
+        break;
     case 'addClassification':
         include '../view/add-classification.php';        
         break;
