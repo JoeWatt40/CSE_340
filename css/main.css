@@ -1,3 +1,11 @@
+html{
+    box-sizing: border-box;
+   }
+   
+   *, *:before, *:after{
+    box-sizing: inherit;
+   }
+
 body {
     background-image: url("../images/site/checkerboard.jpg");
 }
@@ -101,6 +109,26 @@ body {
     display: block;
 }
 
+/*display the vehicles from nav list */
+#inv-display{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+   
+   #inv-display li{
+    margin-bottom: .5em;
+    border: 1px #ccc solid;
+    list-style-type: none;
+    flex: 1 1 auto;
+   }
+   
+   #inv-display li img {
+       max-width: 100%;
+   }
+
 /*footer */
 footer {
     border-top: 2px solid #3a3a3a;
@@ -144,4 +172,28 @@ footer p {
     .info>.upgrades {
         grid-row: 1;
     }
+
+    #inv-display {
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+
+	#inv-display h2{
+		font-size: 1rem;
+	}
+
+    /*to display vehicles in large screen */
+	#inv-display li {
+		max-width: 200px;
+		flex: 1 0 auto;
+		text-align: center;
+		height: 250px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+      
+	#inv-display div {
+		width: 100%;
+	}
 }
