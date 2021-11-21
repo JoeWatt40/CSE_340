@@ -181,11 +181,17 @@ switch ($action){
     
         include '../view/classification.php';
         break;
+<<<<<<< HEAD
     case 'display':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
         $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
         $vehicle = getInvItemInfo($invId);
+=======
+    case 'display': 
+        // $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
+        // $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
+>>>>>>> 6759fc1eb601cbaf686c04d2f982b684cb046163
         // $vehicle = getVehicle($invMake, $invModel);
         // if (!count($vehicle)) {
         // $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";

@@ -45,6 +45,7 @@
     }
 
     //display of the vehicles in a list
+<<<<<<< HEAD
     function buildVehiclesDisplay($vehicles)
     {
       $dv = '<ul id="inv-display">';
@@ -62,5 +63,25 @@
       }
       $dv .= '</ul>';
       return $dv;
+=======
+    function buildVehiclesDisplay($vehicles){
+        echo "in display";
+        exit;
+        $dv = '<ul id="inv-display">';
+        foreach ($vehicles as $vehicle) {
+            $dv .= '<li>';
+            $dv .= "<a href='/phpmotors/vehicles?action=display&invMake=".urlencode($vehicle['invMake']) . "&invModel=" .urlencode($vehicle['invModel']). "'>";
+            $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+            $dv .= '</a>';
+            $dv .= '<hr>';
+            $dv .= "<a href='/phpmotors/vehicles?action=display&invMake=" . urlencode($vehicle['invMake']) . "&invModel=" . urlencode($vehicle['invModel']) . "'>";
+            $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+            $dv .= '</a>';
+            $dv .= "<span>$vehicle[invPrice]</span>";
+            $dv .= '</li>';
+        }
+        $dv .= '</ul>';
+        return $dv;
+>>>>>>> 6759fc1eb601cbaf686c04d2f982b684cb046163
     }
 ?>

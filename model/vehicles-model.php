@@ -113,6 +113,7 @@ function getVehiclesByClassification($classificationName){
     return $vehicles;
    }
 
+<<<<<<< HEAD
 //    function getVehicle($invMake, $invModel)
 // {
 //     $db = phpmotorsConnect();
@@ -125,5 +126,19 @@ function getVehiclesByClassification($classificationName){
 //     $stmt->closeCursor();
 //     return $invInfo;
 // }
+=======
+   function getVehicle($invMake, $invModel)
+{
+    $db = phpmotorsConnect();
+    $sql = "SELECT i.invId, i.invMake, i.invModel, i.invDescription, im.imgPath invImage, i.invPrice, i.invStock, i.invColor, i.classificationId FROM inventory i INNER JOIN images im ON i.invId=im.invId WHERE i.invMake=:invMake AND i.invModel=:invModel ";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
+    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->execute();
+    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+}
+>>>>>>> 6759fc1eb601cbaf686c04d2f982b684cb046163
 
 ?>
