@@ -181,24 +181,19 @@ switch ($action){
     
         include '../view/classification.php';
         break;
-<<<<<<< HEAD
-    case 'display':
-        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
-        $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
-        $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
-        $vehicle = getInvItemInfo($invId);
-=======
     case 'display': 
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         // $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
         // $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
->>>>>>> 6759fc1eb601cbaf686c04d2f982b684cb046163
+        $vehicles = getInvItemInfo($invId);
         // $vehicle = getVehicle($invMake, $invModel);
-        // if (!count($vehicle)) {
-        // $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
-        // } else {
-        // $thumbnail = getVehicleThumbnail($vehicle['invId']);
-        // $vehicleDetailDisplay = buildVehicleDetailDisplay($vehicle, $thumbnail);
-        // }
+        if (!count($vehicles)) {
+        $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
+        } else {
+        //$thumbnail = getVehicleThumbnail($vehicle['invId']);
+        $vehicleDetailDisplay = vehicleDetail($vehicles);
+        echo $vehicleDetailDisplay;
+        }
         // if (isset($_SESSION['loggedin'])) {
         // if ($_SESSION['loggedin']) {
         //     $screenName = getScreenName($_SESSION['clientData']['clientFirstname'], $_SESSION['clientData']['clientLastname']);
