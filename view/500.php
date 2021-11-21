@@ -13,7 +13,7 @@
         
         <header> 
             <?php require $_SERVER['DOCUMENT_ROOT'].'/phpmotors/common/header.php';?>
-        </header> <            
+        </header>            
             
         <nav>
             <?php echo $navList; ?>

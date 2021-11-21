@@ -45,17 +45,22 @@
     }
 
     //display of the vehicles in a list
-    function buildVehiclesDisplay($vehicles){
-        $dv = '<ul id="inv-display">';
-        foreach ($vehicles as $vehicle) {
-            $dv .= '<li>';
-            $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
-            $dv .= '<hr>';
-            $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
-            $dv .= "<span>$vehicle[invPrice]</span>";
-            $dv .= '</li>';
-        }
-        $dv .= '</ul>';
-        return $dv;
+    function buildVehiclesDisplay($vehicles)
+    {
+      $dv = '<ul id="inv-display">';
+      foreach ($vehicles as $vehicle) {
+        $dv .= '<li>';
+        $dv .= "<a href='/phpmotors/vehicles?action=display&invId=" . urlencode($vehicle['invId']) . "'>";
+        $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+        $dv .= '</a>';
+        $dv .= '<hr>';
+        $dv .= "<a href='/phpmotors/vehicles?action=display&invId=" . urlencode($vehicle['invId']) . "'>";
+        $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+        $dv .= '</a>';
+        $dv .= "<span>$vehicle[invPrice]</span>";
+        $dv .= '</li>';
+      }
+      $dv .= '</ul>';
+      return $dv;
     }
 ?>
