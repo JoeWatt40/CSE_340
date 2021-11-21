@@ -46,12 +46,18 @@
 
     //display of the vehicles in a list
     function buildVehiclesDisplay($vehicles){
+        echo "in display";
+        exit;
         $dv = '<ul id="inv-display">';
         foreach ($vehicles as $vehicle) {
             $dv .= '<li>';
+            $dv .= "<a href='/phpmotors/vehicles?action=display&invMake=".urlencode($vehicle['invMake']) . "&invModel=" .urlencode($vehicle['invModel']). "'>";
             $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+            $dv .= '</a>';
             $dv .= '<hr>';
+            $dv .= "<a href='/phpmotors/vehicles?action=display&invMake=" . urlencode($vehicle['invMake']) . "&invModel=" . urlencode($vehicle['invModel']) . "'>";
             $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+            $dv .= '</a>';
             $dv .= "<span>$vehicle[invPrice]</span>";
             $dv .= '</li>';
         }

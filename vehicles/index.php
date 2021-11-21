@@ -181,6 +181,32 @@ switch ($action){
     
         include '../view/classification.php';
         break;
+    case 'display': 
+        // $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
+        // $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
+        // $vehicle = getVehicle($invMake, $invModel);
+        // if (!count($vehicle)) {
+        // $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
+        // } else {
+        // $thumbnail = getVehicleThumbnail($vehicle['invId']);
+        // $vehicleDetailDisplay = buildVehicleDetailDisplay($vehicle, $thumbnail);
+        // }
+        // if (isset($_SESSION['loggedin'])) {
+        // if ($_SESSION['loggedin']) {
+        //     $screenName = getScreenName($_SESSION['clientData']['clientFirstname'], $_SESSION['clientData']['clientLastname']);
+        // }
+        // }
+        // $reviews = getReviewByInv($vehicle['invId']);
+        // $firstReview = '';
+        // if (count($reviews) < 1) {
+        // $firstReview = '<h3>Be the first to write a review.</h3>';
+        // }
+        // $reviewsDetailDisplay = '';
+        // foreach ($reviews as $key => $review) {
+        // $reviewsDetailDisplay .= getReviewsView($review);
+        // }
+        include '../view/500.php';
+        break;
     default:
         $classificationList = buildClassificationList($classifications);
         include '../view/admin.php';        
