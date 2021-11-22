@@ -126,7 +126,7 @@ body {
        max-width: 20rem;
    }
 
-   .detail h1 {
+   .detail h1, .inv-display {
        text-align: center;
    }
 

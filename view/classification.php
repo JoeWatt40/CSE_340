@@ -20,7 +20,7 @@
 
         <main>
         
-            <h1 id="inv-display"><?php echo $classificationName; ?> vehicles</h1>
+            <h1 class="inv-display"><?php echo $classificationName; ?> vehicles</h1>
 
             <?php if(isset($message)){
                 echo $message; }
