@@ -183,16 +183,11 @@ switch ($action){
         break;
     case 'display': 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
-        // $invMake = filter_input(INPUT_GET, 'invMake', FILTER_SANITIZE_STRING);
-        // $invModel = filter_input(INPUT_GET, 'invModel', FILTER_SANITIZE_STRING);
-        $vehicles = getInvItemInfo($invId);
-        // $vehicle = getVehicle($invMake, $invModel);
+        $vehicles = getVehicle($invId);
         if (!count($vehicles)) {
         $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
         } else {
-        //$thumbnail = getVehicleThumbnail($vehicle['invId']);
         $vehicleDetailDisplay = vehicleDetail($vehicles);
-        echo $vehicleDetailDisplay;
         }
         // if (isset($_SESSION['loggedin'])) {
         // if ($_SESSION['loggedin']) {
@@ -208,7 +203,7 @@ switch ($action){
         // foreach ($reviews as $key => $review) {
         // $reviewsDetailDisplay .= getReviewsView($review);
         // }
-        include '../view/500.php';
+        include '../view/vehicle-detail.php';
         break;
     default:
         $classificationList = buildClassificationList($classifications);

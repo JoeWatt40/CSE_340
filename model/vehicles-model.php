@@ -113,13 +113,11 @@ function getVehiclesByClassification($classificationName){
     return $vehicles;
    }
 
-   function getVehicle($invMake, $invModel)
-{
+   function getVehicle($invId){
     $db = phpmotorsConnect();
-    $sql = "SELECT i.invId, i.invMake, i.invModel, i.invDescription, im.imgPath invImage, i.invPrice, i.invStock, i.invColor, i.classificationId FROM inventory i INNER JOIN images im ON i.invId=im.invId WHERE i.invMake=:invMake AND i.invModel=:invModel ";
+    $sql = 'SELECT * FROM inventory WHERE invId = :invId ';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
-    $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
     $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
