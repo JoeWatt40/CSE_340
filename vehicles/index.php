@@ -183,7 +183,7 @@ switch ($action){
         break;
     case 'display': 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
-        $vehicles = getVehicle($invId);
+        $vehicles = getVehicleById($invId);
         if (!count($vehicles)) {
         $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
         } else {
