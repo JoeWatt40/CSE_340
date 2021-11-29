@@ -5,7 +5,7 @@ session_start();
 require_once '../library/connections.php';
 require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
-require_once '../model/uploads-model.php';
+require_once '../uploads/uploads-model.php';
 require_once '../library/functions.php';
 
 // Build a navigation bar using the $classifications array
