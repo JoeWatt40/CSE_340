@@ -58,13 +58,13 @@ switch ($action) {
         header('location: .');
     break;
     case 'delete':
-   
+        
         $filename = filter_input(INPUT_GET, 'filename', FILTER_SANITIZE_STRING);
         $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);
-            
+          
         // Build the full path to the image to be deleted
         $target = $image_dir_path . '/' . $filename;
-            
+           
         // Check that the file exists in that location
         if (file_exists($target)) {
             $result = unlink($target); 

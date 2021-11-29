@@ -128,6 +128,7 @@ function uploadFile($name) {
             return;
         }   
         $source = $_FILES[$name]['tmp_name'];  
+        //path for file to upload to
         $target = $image_dir_path . '/' . $filename;   
         move_uploaded_file($source, $target); 
         processImage($image_dir_path, $filename); 

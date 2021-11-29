@@ -1,7 +1,5 @@
 <?php 
-
 //model controller for images
-
 
 // Add image information to the database table
 function storeImages($imgPath, $invId, $imgName, $imgPrimary) {
