@@ -122,6 +122,7 @@ function buildVehiclesSelect($vehicles) {
 function uploadFile($name) {
     
     global $image_dir, $image_dir_path;
+    
     if (isset($_FILES[$name])) {     
         $filename = $_FILES[$name]['name'];
         if (empty($filename)) {

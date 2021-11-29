@@ -13,7 +13,7 @@ $classifications = getClassifications();
 $navList = navList($classifications);
 
 // directory and path of image uploads
-$image_dir = '/phpmotors/uploads/images';
+$image_dir = '/phpmotors/images/vehicles/';
 $image_dir_path = $_SERVER['DOCUMENT_ROOT'] . $image_dir;
 
 //gets whether a GET or POST

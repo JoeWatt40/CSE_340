@@ -34,7 +34,7 @@
 
                 <div class="order">
                     <img class="own" src="/phpmotors/images/site/own_today.png" alt="own today image">
-                    <img class="car" src="/phpmotors/images/delorean.jpg" alt="delorean image">
+                    <img class="car" src="/phpmotors/images/vehicles/delorean.jpg" alt="delorean image">
                 </div>              
             </div>
 
