@@ -58,4 +58,17 @@ function checkExistingImage($imgName){
     return $imageMatch;
    }
 
+function imageThumbnail($invId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT imgPath FROM images WHERE invId = :invId ';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $imgPath = $stmt->fetch(PDO::FETCH_ASSOC);
+    var_dump($imgPath);
+    exit;
+    $stmt->closeCursor();
+    return $imgPath;
+}
+
 ?>

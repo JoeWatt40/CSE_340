@@ -114,6 +114,9 @@ function getVehiclesByClassification($classificationName){
    }
 
 function getVehicleById($invId){
+    // $imgPath = imageThumbnail($invId);
+    // echo $imgPath;
+    // exit;
     $db = phpmotorsConnect();
     $sql = 'SELECT * FROM inventory WHERE invId = :invId ';
     $stmt = $db->prepare($sql);

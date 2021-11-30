@@ -8,6 +8,7 @@ session_start();
 require_once '../library/connections.php';
 require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
+require_once '../uploads/uploads-model.php';
 require_once '../library/functions.php';
 
 $classifications = getClassifications();
@@ -184,10 +185,11 @@ switch ($action){
     case 'display': 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $vehicles = getVehicleById($invId);
+        
         if (!count($vehicles)) {
-        $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
-        } else {
-        $vehicleDetailDisplay = vehicleDetail($vehicles);
+            $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
+            } else {
+            $vehicleDetailDisplay = vehicleDetail($vehicles);
         }
         // if (isset($_SESSION['loggedin'])) {
         // if ($_SESSION['loggedin']) {
