@@ -113,10 +113,31 @@ function getVehiclesByClassification($classificationName){
     return $vehicles;
    }
 
+// $sql = 'SELECT inv.invId, inv.invPrice, inv.invStock, inv.invMake, inv.invModel, inv.invDescription, inv.invColor, img.imgPath AS invThumbnail
+//     FROM inventory inv
+//     INNER JOIN images img
+//     ON inv.invId = img.invId
+//     WHERE img.imgPath LIKE "%-tn.%" AND img.imgPrimary = 1 AND
+//     inv.classificationId IN 
+//     (SELECT classificationId 
+//     FROM carclassification 
+//     WHERE classificationName = :classificationName)';
+
+// $db = phpmotorsConnect();
+// $sql = "SELECT i.invId, i.invMake, i.invModel, i.invDescription, 
+// im.imgPath invThumbnail, im.imgName,
+// i.invPrice, i.invStock, i.invColor, i.classificationId 
+// FROM inventory i INNER JOIN images im ON i.invId=im.invId
+// WHERE im.imgPath like '%-tn.%'
+// and i.invId=:invId";
+// $stmt = $db->prepare($sql);
+// $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+// $stmt->execute();
+// $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt->closeCursor();
+// return $vehicles;
+
 function getVehicleById($invId){
-    // $imgPath = imageThumbnail($invId);
-    // echo $imgPath;
-    // exit;
     $db = phpmotorsConnect();
     $sql = 'SELECT * FROM inventory WHERE invId = :invId ';
     $stmt = $db->prepare($sql);
@@ -137,5 +158,4 @@ function getVehicles(){
 	$stmt->closeCursor();
 	return $invInfo;
 }
-
 ?>
