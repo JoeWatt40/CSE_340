@@ -174,6 +174,7 @@ switch ($action){
     case 'classification':
         $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
         $vehicles = getVehiclesByClassification($classificationName);
+        
         if(!count($vehicles)){
             $message = "<p class='notice'>Sorry, no $classificationName could be found.</p>";
         } else {
@@ -183,10 +184,11 @@ switch ($action){
         include '../view/classification.php';
         break;
     case 'display': 
+    
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
-        $vehicles = getVehicles($invId);//getvehiclesById
-        // var_dump($vehicles);
-        // exit;
+        $vehicles = getVehicleById($invId);
+        //    var_dump($vehicles);
+        //    exit;   
         if (!count($vehicles)) {
             $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
             } else {           

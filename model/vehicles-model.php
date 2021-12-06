@@ -106,77 +106,48 @@ function getVehiclesByClassification($classificationName){
     $db = phpmotorsConnect();
     $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
     $stmt = $db->prepare($sql);
-    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);    
     $stmt->execute();
     $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicles;
    }
 
-   
-// $sql = 'SELECT inv.invId, inv.invPrice, inv.invStock, inv.invMake, inv.invModel, inv.invDescription, inv.invColor, img.imgPath AS invThumbnail
-//     FROM inventory inv
-//     INNER JOIN images img
-//     ON inv.invId = img.invId
-//     WHERE img.imgPath LIKE "%-tn.%" AND img.imgPrimary = 1 AND
-//     inv.classificationId IN 
-//     (SELECT classificationId 
-//     FROM carclassification 
-//     WHERE classificationName = :classificationName)';
-
-// $db = phpmotorsConnect();
-// $sql = "SELECT i.invId, i.invMake, i.invModel, i.invDescription, 
-// im.imgPath invThumbnail, im.imgName,
-// i.invPrice, i.invStock, i.invColor, i.classificationId 
-// FROM inventory i INNER JOIN images im ON i.invId=im.invId
-// WHERE im.imgPath like '%-tn.%'
-// and i.invId=:invId";
-// $stmt = $db->prepare($sql);
-// $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
-// $stmt->execute();
-// $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// $stmt->closeCursor();
-// return $vehicles;
-
 function getVehicleById($invId){
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE invId = :invId ';
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $sql = 'SELECT i.invId, i.invMake, i.invModel, i.invDescription, i.invImage, i.invThumbnail,
+    i.invPrice, i.invStock, i.invColor, im.imgName, im.imgPath, im.imgPrimary    
+    FROM inventory i INNER JOIN images im ON i.invId = im.invId
+    WHERE im.imgPath like "%-tn.%"
+    AND im.imgPrimary = 1
+    AND i.invId = :invId';
+    $stmt = $db->prepare($sql);    
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);    
+    // $stmt->bindValue(':invMake', PDO::PARAM_STR);
+    // $stmt->bindValue(':invModel', PDO::PARAM_STR);
+    // $stmt->bindValue(':invDescription', PDO::PARAM_STR);
+    // $stmt->bindValue(':invImage', PDO::PARAM_STR);
+    // $stmt->bindValue(':invThumbnail', PDO::PARAM_STR);
+    //$stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
+    // $stmt->bindValue(':invStock', PDO::PARAM_STR);
+    // $stmt->bindValue(':invColor', PDO::PARAM_STR);
+    // $stmt->bindValue(':imgName', PDO::PARAM_STR);
+    // $stmt->bindValue(':imgPath', PDO::PARAM_STR);
+    // $stmt->bindValue(':imgPrimary', PDO::PARAM_STR);
     $stmt->execute();
-    $invInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    $vehicles = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $invInfo;
+    return $vehicles;
 }
 
 // Get information for all vehicles
-function getVehicles($invId){
-	$db = phpmotorsConnect();
-	$sql = "SELECT inv.invId, inv.invMake, inv.invModel, inv.invDescription, inv.invImage, inv.invThumbnail, img.imgPath
-        FROM inventory inv INNER JOIN images img ON inv.invId = img.invId
-        WHERE img.imgPath like '%-tn.%'
-        AND img.imgPrimary = 1
-        AND inv.invId = img.invId";
-	$stmt = $db->prepare($sql);
-    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
-    // $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
-    // $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
-    // $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
-    // $stmt->bindValue(':invImage', $invImage, PDO::PARAM_STR);
-    // $stmt->bindValue(':invThumbnail', $invThumbnail, PDO::PARAM_STR);
-    // $stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
-    // $stmt->bindValue(':invStock', $invStock, PDO::PARAM_STR);
-    // $stmt->bindValue(':invColor', $invColor, PDO::PARAM_STR);
-	$stmt->execute();
-	$invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	$stmt->closeCursor();
-	return $invInfo;
-}
-
-//    SELECT inv.invId, inv.invMake, inv.invModel, inv.invDescription, inv.invImage, inv.invThumbnail, inv.invprice,
-//    inv.invStock, inv.invColor, img.imgPath
-//    FROM inventory inv INNER JOIN images img ON inv.invId=img.invId
-//    WHERE img.imgPath like '%-tn.%'
-//    AND img.imgPrimary = 1;
-//SELECT invId, invMake, invModel FROM inventory
+function getVehicles(){
+    $db = phpmotorsConnect();
+    $sql = 'SELECT invId, invMake, invModel FROM inventory';
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $invInfo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $invInfo;
+}	
 ?>

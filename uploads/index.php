@@ -63,7 +63,7 @@ switch ($action) {
         $imgId = filter_input(INPUT_GET, 'imgId', FILTER_VALIDATE_INT);
           
         // Build the full path to the image to be deleted
-        $target = $image_dir_path . '/' . $filename;
+        $target = $image_dir_path . $filename;//$target = $image_dir_path . '/' . $filename;
            
         // Check that the file exists in that location
         if (file_exists($target)) {
