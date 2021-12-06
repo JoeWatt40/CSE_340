@@ -60,15 +60,13 @@ function checkExistingImage($imgName){
 
 function imageThumbnail($invId) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT imgPath FROM images WHERE invId = :invId ';
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $sql = 'SELECT imgPath FROM images WHERE imgPath LIKE "%-tn.%" AND invId = :invId';
+    $stmt = $db->prepare($sql);    
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);    
     $stmt->execute();
-    $imgPath = $stmt->fetch(PDO::FETCH_ASSOC);
-    var_dump($imgPath);
-    exit;
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
-    return $imgPath;
+    return $vehicles;
 }
 
 ?>

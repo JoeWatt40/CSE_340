@@ -118,22 +118,11 @@ function getVehicleById($invId){
     $sql = 'SELECT i.invId, i.invMake, i.invModel, i.invDescription, i.invImage, i.invThumbnail,
     i.invPrice, i.invStock, i.invColor, im.imgName, im.imgPath, im.imgPrimary    
     FROM inventory i INNER JOIN images im ON i.invId = im.invId
-    WHERE im.imgPath like "%-tn.%"
+    WHERE im.imgPath NOT LIKE "%-tn.%"
     AND im.imgPrimary = 1
     AND i.invId = :invId';
     $stmt = $db->prepare($sql);    
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);    
-    // $stmt->bindValue(':invMake', PDO::PARAM_STR);
-    // $stmt->bindValue(':invModel', PDO::PARAM_STR);
-    // $stmt->bindValue(':invDescription', PDO::PARAM_STR);
-    // $stmt->bindValue(':invImage', PDO::PARAM_STR);
-    // $stmt->bindValue(':invThumbnail', PDO::PARAM_STR);
-    //$stmt->bindValue(':invPrice', $invPrice, PDO::PARAM_STR);
-    // $stmt->bindValue(':invStock', PDO::PARAM_STR);
-    // $stmt->bindValue(':invColor', PDO::PARAM_STR);
-    // $stmt->bindValue(':imgName', PDO::PARAM_STR);
-    // $stmt->bindValue(':imgPath', PDO::PARAM_STR);
-    // $stmt->bindValue(':imgPrimary', PDO::PARAM_STR);
     $stmt->execute();
     $vehicles = $stmt->fetch(PDO::FETCH_ASSOC);
     $stmt->closeCursor();

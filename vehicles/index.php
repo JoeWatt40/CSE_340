@@ -187,12 +187,13 @@ switch ($action){
     
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $vehicles = getVehicleById($invId);
-        //    var_dump($vehicles);
+        $imageThumb = imageThumbnail($invId);
+        //    var_dump($imageThumb);
         //    exit;   
         if (!count($vehicles)) {
             $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
-            } else {           
-            $vehicleDetailDisplay = vehicleDetail($vehicles);
+            } else {      
+            $vehicleDetailDisplay = vehicleDetail($vehicles, $imageThumb);
         }
         
         include '../view/vehicle-detail.php';
