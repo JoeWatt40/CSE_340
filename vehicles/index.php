@@ -21,8 +21,19 @@ $classificationList = '<select name="classificationId">';
 $classificationList .= "<option>Choose a Classification</option>";
 foreach ($classifications as $classification) {
     $classificationList .= "<option value='$classification[classificationId]'";
+    if(isset($classificationId)){
+        echo "in first if";
+        exit;
+        if($classification['classificationId'] === $classificationId){
+        $classificationList .= ' selected '; }
+    } elseif(isset($invInfo['classificationId'])){
+        echo "in else";
+        exit;
+        if($classification['classificationId'] === $invInfo['classificationId']){
+        $classificationList .= ' selected ';}
+    }
     $classificationList .= ">$classification[classificationName]</option>";
-}
+    }
     $classificationList .= '</select>';
 
 //main site controller
@@ -104,7 +115,8 @@ switch ($action){
     case 'mod':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
-
+        // var_dump($invInfo);
+        // exit;
         if(count($invInfo) <1 ){
             $message = 'Sorry, no vehicle information could be found.';
         }
@@ -188,8 +200,7 @@ switch ($action){
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
         $vehicles = getVehicleById($invId);
         $imageThumb = imageThumbnail($invId);
-        //    var_dump($imageThumb);
-        //    exit;   
+        
         if (!count($vehicles)) {
             $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
             } else {      

@@ -46,8 +46,6 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
             <form action="/phpmotors/vehicles/index.php" method="POST">
                 <label for="classification">Classification:</label><br>
                 <?php echo $classificationList ?><br>
-                <?php if(isset($classificationName)){echo "value='$classificationName'";} elseif(isset($classificationList['classificationName'])) {echo "value='$classificationList[classificationName]'";}?><br>
-                <input type="text" name="classification" id="classification" required <?php ?>><br>
                 <label for="invMake">Make:</label><br>
                 <input type="text" name="invMake" id="invMake" required <?php if(isset($invMake)){ echo "value='$invMake'"; } elseif(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?>><br>
                 <label for="invModel">Model:</label><br>
