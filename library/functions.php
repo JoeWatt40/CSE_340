@@ -70,8 +70,10 @@
         $value = number_format($vehicles['invPrice']);
         $dv = "<h1>$vehicles[invMake] $vehicles[invModel]</h1>";
         $dv .= '<ul id="inv-display">';        
-        $dv .= '<li>';        
-        $dv .= "<img src='$vehicles[imgPath]' alt='Image of $vehicles[invMake] $vehicles[invModel] on phpmotors.com'>";
+        $dv .= '<li>';   
+        // var_dump($vehicles);  
+        // exit;   
+        $dv .= "<img src='$vehicles[invThumbnail]' alt='Image of $vehicles[invMake] $vehicles[invModel] on phpmotors.com'>";
         $dv .= "<p>$$value</p>";
         $dv .= '</li>'; 
         $dv .= '<li>';     

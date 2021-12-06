@@ -184,14 +184,13 @@ switch ($action){
         break;
     case 'display': 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_NUMBER_INT);
-        $vehicles = getVehicleById($invId);
-        
+        $vehicles = getVehicles($invId);//getvehiclesById
+        // var_dump($vehicles);
+        // exit;
         if (!count($vehicles)) {
             $message = "<p class='notice'>Sorry, no vehicle $invMake $invModel could be found.</p>";
             } else {           
             $vehicleDetailDisplay = vehicleDetail($vehicles);
-            var_dump($vehicleDetailDisplay);
-                exit; 
         }
         
         include '../view/vehicle-detail.php';
