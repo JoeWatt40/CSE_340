@@ -1,5 +1,4 @@
 <?php
-
 // ALTER TABLE `clients`
 // MODIFY `clientId` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
@@ -29,7 +28,7 @@
         foreach ($classifications as $classification) { 
          $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
         } 
-        $classificationList .= '</select>'; 
+        $classificationList .= '</select>';
         return $classificationList; 
     }
     

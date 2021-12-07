@@ -3,6 +3,21 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
  header('location: /phpmotors/');
  exit;
 }
+$classificationList = '<select name="classificationId" id="classificationId">';
+$classificationList .= "<option>Choose a Classification</option>";
+    foreach ($classifications as $classification) { 
+        $classificationList .= "<option value='$classification[classificationId]'";  
+        if(isset($classificationId)){         
+            if($classification['classificationId'] === $classificationId){
+                $classificationList .= ' selected '; 
+        } elseif(isset($invInfo['classificationId'])){                       
+            if($classification['classificationId'] === $invInfo['classificationId']){
+                $classificationList .= ' selected ';}
+            } 
+        $classificationList .= ">$classification[classificationName]</option>";
+        }
+    $classificationList .= '</select>';
+    }   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +60,7 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
             
             <form action="/phpmotors/vehicles/index.php" method="POST">
                 <label for="classification">Classification:</label><br>
-                <?php echo $classificationList ?><br>
+                <?php echo $classificationList; ?><br>
                 <label for="invMake">Make:</label><br>
                 <input type="text" name="invMake" id="invMake" required <?php if(isset($invMake)){ echo "value='$invMake'"; } elseif(isset($invInfo['invMake'])) {echo "value='$invInfo[invMake]'"; }?>><br>
                 <label for="invModel">Model:</label><br>

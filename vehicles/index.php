@@ -17,24 +17,21 @@ $classNames = getClass();
 //navigation list
 $navList = navList($classifications);
 
-$classificationList = '<select name="classificationId">';
-$classificationList .= "<option>Choose a Classification</option>";
-foreach ($classifications as $classification) {
-    $classificationList .= "<option value='$classification[classificationId]'";
-    if(isset($classificationId)){
-        echo "in first if";
-        exit;
-        if($classification['classificationId'] === $classificationId){
-        $classificationList .= ' selected '; }
-    } elseif(isset($invInfo['classificationId'])){
-        echo "in else";
-        exit;
-        if($classification['classificationId'] === $invInfo['classificationId']){
-        $classificationList .= ' selected ';}
-    }
-    $classificationList .= ">$classification[classificationName]</option>";
-    }
-    $classificationList .= '</select>';
+// $classificationList = '<select name="classificationId">';
+// $classificationList .= "<option>Choose a Classification</option>";
+// foreach ($classifications as $classification) {  
+//     $classificationList .= "<option value='$classification[classificationId]'";
+//     if(isset($classificationId)){
+//         if($classification['classificationId'] === $classificationId){
+//             $classificationList .= ' selected '; }
+//     } elseif(isset($invInfo['classificationId'])){
+//         if($classification['classificationId'] === $invInfo['classificationId']){
+//             $classificationList .= ' selected ';}
+//     }    
+//     $classificationList .= ">$classification[classificationName]</option>";
+//     }
+// $classificationList .= '</select>';
+
 
 //main site controller
 $action = filter_input(INPUT_GET, 'action');
@@ -50,6 +47,9 @@ switch ($action){
         break;
     case 'addClassification':
         include '../view/add-classification.php';        
+        break;
+    case 'admin':
+        include '../view/admin.php';        
         break;
     case 'addClass':
         $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
@@ -115,13 +115,11 @@ switch ($action){
     case 'mod':
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
         $invInfo = getInvItemInfo($invId);
-        // var_dump($invInfo);
-        // exit;
+    
         if(count($invInfo) <1 ){
             $message = 'Sorry, no vehicle information could be found.';
         }
         include '../view/vehicle-update.php';
-        exit;
         break;
     case 'updateVehicle':
         $classificationId = filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
@@ -209,9 +207,9 @@ switch ($action){
         
         include '../view/vehicle-detail.php';
         break;
-    default:
+    default:     
         $classificationList = buildClassificationList($classifications);
-        include '../view/admin.php';        
+        include '../view/vehicle-man.php';        
     break;
 
 }
