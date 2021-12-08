@@ -6,18 +6,19 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
 $classificationList = '<select name="classificationId" id="classificationId">';
 $classificationList .= "<option>Choose a Classification</option>";
     foreach ($classifications as $classification) { 
-        $classificationList .= "<option value='$classification[classificationId]'";  
-        if(isset($classificationId)){         
+        $classificationList .= "<option value='$classification[classificationId]'";
+        if(isset($classificationId)){                   
             if($classification['classificationId'] === $classificationId){
-                $classificationList .= ' selected '; 
-        } elseif(isset($invInfo['classificationId'])){                       
+                $classificationList .= 'selected'; 
+        }}
+        elseif (isset($invInfo['classificationId'])) {                                
             if($classification['classificationId'] === $invInfo['classificationId']){
-                $classificationList .= ' selected ';}
+                $classificationList .= 'selected';}
             } 
+            
         $classificationList .= ">$classification[classificationName]</option>";
-        }
-    $classificationList .= '</select>';
-    }   
+        } 
+    $classificationList .= '</select>';     
 ?>
 <!DOCTYPE html>
 <html lang="en">
