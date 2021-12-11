@@ -26,20 +26,22 @@
 
             <div class="detail">
                 <?php if(isset($vehicleDetailDisplay)){
-                    echo $vehicleDetailDisplay;
-                } ?>
+                    echo $vehicleDetailDisplay;}
+                ?>
 
                 <h1>Vehicle Reviews Below</h1>
                 <h2>Customer Reviews</h2>
 
-                <?php if ($_SESSION['loggedin'] = FALSE) {
-                        echo "<a href='/phpmotors/reviews/index.php?action=login'>Login to add a review</a>";
-                } else 
-            
-                echo '<form>
-                    <textarea name="review" id="review" rows="10" cols="50" placeholder="Add a review here"></textarea><br>
-                    <input type="submit">
-                </form>' ?>
+                <?php if (isset($_SESSION['loggedin'])) {                        
+                    echo '<form action="/phpmotors/reviews/index.php" method="post">
+                        <textarea name="review" id="review" rows="10" cols="50" placeholder="Add a review here" required></textarea><br>
+                        <input type="hidden" name="reviewId" id="reviewId" value="reviewId">
+                        <input type="hidden" name="action" value="add">
+                        <input type="submit" value="Submit Review">
+                        </form>';
+                    } else { 
+                        echo "<a href='/phpmotors/reviews/index.php?action=login'>Login to add a review</a>";}          
+                ?>
                    
                 
             </div>            

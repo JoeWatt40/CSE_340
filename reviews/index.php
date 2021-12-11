@@ -29,12 +29,13 @@ if(isset($_COOKIE['firstname'])){
 //takes input variable to direct site to page
 switch ($action){
     case 'login':
-        if ($_SESSION['loggedin'] = TRUE)
-            include '../view/admin.php';
-        else    
-            include '../view/login.php';
+        include '../view/login.php';
         break;
     case 'add':
+        echo "in add";
+        $reviewId = trim(filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
+        echo $reviewId;
+        exit;
         include '';
         break;
     case 'edit':
