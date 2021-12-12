@@ -38,10 +38,21 @@ switch ($action){
         $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
         $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
         $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
-        echo $invMake;
+       
         $regOutcome = addReview($reviewText, $clientId, $invId);
+        $vehicleReview = getReviewByInvId($invId);
+        var_dump($vehicleReview);
         exit;
-        include '';
+        if($regOutcome === 1){
+            $message = "<p>Thank you so much for the reviewing the $invMake $invModel</p>";
+            include '../view/vehicle-detail.php';
+            exit;
+        } else {
+            $message = "<p>Sorry your review for the $invMake $invModel was not entered, please try again.</p>";
+            include '../view/vehicle-detail.php';
+            exit;
+        }
+        include '../view/vehicle-detail.php';
         break;
     case 'edit':
         include 'update';        
