@@ -1,6 +1,8 @@
 <?php 
 
-function addReview() {
+function addReview($reviewText, $clientId, $invId) {
+    echo "in add function";
+    exit;
 
 }
 

@@ -34,8 +34,11 @@
 
                 <?php if (isset($_SESSION['loggedin'])) {                        
                     echo '<form action="/phpmotors/reviews/index.php" method="post">
-                        <textarea name="review" id="review" rows="10" cols="50" placeholder="Add a review here" required></textarea><br>
-                        <input type="hidden" name="reviewId" id="reviewId" value="reviewId">
+                        <textarea name="reviewText" id="reviewText" rows="10" cols="50" placeholder="Add a review here" required></textarea><br>
+                        <input type="hidden" name="invId" value="' . $vehicles['invId'] . '">
+                        <input type="hidden" name="invMake" value="' . $vehicles['invMake'] . '">
+                        <input type="hidden" name="invModel" value="' . $vehicles['invModel'] . '">
+                        <input type="hidden" name="clientId" value="' . $_SESSION['clientData']['clientId'] . '">
                         <input type="hidden" name="action" value="add">
                         <input type="submit" value="Submit Review">
                         </form>';

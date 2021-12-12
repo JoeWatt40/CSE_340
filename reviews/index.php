@@ -10,6 +10,7 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 require_once '../model/vehicles-model.php';
 require_once '../library/functions.php';
+require_once '../model/reviews-model.php';
 
 $classifications = getClassifications();
 
@@ -32,9 +33,13 @@ switch ($action){
         include '../view/login.php';
         break;
     case 'add':
-        echo "in add";
-        $reviewId = trim(filter_input(INPUT_POST, 'reviewId', FILTER_SANITIZE_NUMBER_INT));
-        echo $reviewId;
+        $reviewText = trim(filter_input(INPUT_POST, 'reviewText', FILTER_SANITIZE_STRING));
+        $invId = trim(filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT));
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
+        echo $invMake;
+        $regOutcome = addReview($reviewText, $clientId, $invId);
         exit;
         include '';
         break;
