@@ -67,13 +67,24 @@ switch ($action){
     case 'delete': 
         $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
         
-        echo $reviewId;
-        exit;
+        $deleteResult = deleteReview($reviewId);
+        if ($deleteResult) {
+            $message = "<p class='notify'>The review was successfully deleted.</p>";
+            $_SESSION['message'] = $message;
+            include '../view/admin.php';
+            exit;
+        } else {
+            $message = "<p class='notify'>THE REVIEW WAS NOT DELTED!!</p>";
+            $_SESSION['message'] = $message;
+            include '../view/vehicle-detail.php';
+            exit;
+        }
         
         include '../view/vehicle-detail.php';
         break;
     
     default:
+
         if(isset($_SESSION['loggedin'])) {
             include '../view/admin.php';
         } else {

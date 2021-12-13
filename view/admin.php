@@ -36,6 +36,9 @@
                 if($_SESSION['clientData']['clientLevel'] > 1 ) {
                     echo "<h3>Click on the link below to manage vehicle inventory.</h3>";
                     echo "<p><a href='/phpmotors/vehicles/index.php?action=vehicle'>Vehicle Management</a></p>"; 
+                    echo $reviewDisplay;
+                } else {
+                    echo $reviewDisplay;
                 }
             ?>
            
