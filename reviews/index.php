@@ -46,12 +46,12 @@ switch ($action){
         }
 
         $regOutcome = addReview($reviewText, $clientId, $invId);
-
+        
         $vehicleReviews = getReviewByInvId($invId);        
         $reviewDisplay = reviewDisplay($vehicleReviews);
 
         if($regOutcome === 1){
-            $message = "<p>Thank you so much for the reviewing the $invMake $invModel</p>";
+            $message = "<p>Thank you so much for the reviewing the $invMake  $invModel</p>";
             include '../view/vehicle-detail.php';
             exit;
         } else {
@@ -65,11 +65,20 @@ switch ($action){
         include 'update';        
         break; 
     case 'delete': 
-        include '';
+        $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+        
+        echo $reviewId;
+        exit;
+        
+        include '../view/vehicle-detail.php';
         break;
     
     default:
-        include '../view/admin.php';        
-    break;
+        if(isset($_SESSION['loggedin'])) {
+            include '../view/admin.php';
+        } else {
+            include '../view/home.php';  
+        }    
+        break;
 }
 ?>

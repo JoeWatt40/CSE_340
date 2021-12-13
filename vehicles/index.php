@@ -10,28 +10,13 @@ require_once '../model/main-model.php';
 require_once '../model/vehicles-model.php';
 require_once '../uploads/uploads-model.php';
 require_once '../library/functions.php';
+require_once '../model/reviews-model.php';
 
 $classifications = getClassifications();
 $classNames = getClass();
 
 //navigation list
 $navList = navList($classifications);
-
-// $classificationList = '<select name="classificationId">';
-// $classificationList .= "<option>Choose a Classification</option>";
-// foreach ($classifications as $classification) {  
-//     $classificationList .= "<option value='$classification[classificationId]'";
-//     if(isset($classificationId)){
-//         if($classification['classificationId'] === $classificationId){
-//             $classificationList .= ' selected '; }
-//     } elseif(isset($invInfo['classificationId'])){
-//         if($classification['classificationId'] === $invInfo['classificationId']){
-//             $classificationList .= ' selected ';}
-//     }    
-//     $classificationList .= ">$classification[classificationName]</option>";
-//     }
-// $classificationList .= '</select>';
-
 
 //main site controller
 $action = filter_input(INPUT_GET, 'action');
@@ -204,6 +189,9 @@ switch ($action){
             } else {      
             $vehicleDetailDisplay = vehicleDetail($vehicles, $imageThumb);
         }
+
+        $vehicleReviews = getReviewByInvId($invId);        
+        $reviewDisplay = reviewDisplay($vehicleReviews);
         
         include '../view/vehicle-detail.php';
         break;

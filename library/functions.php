@@ -70,10 +70,8 @@
         foreach ($vehicleReviews as $vehicleReview) {
             $dv .= '<li>';
             $dv .= "$vehicleReview[reviewText]";
-            $dv .= "<input type='hidden' name='action' value='edit'>";
-            $dv .= "<input type='submit' value='Edit'>";
-            $dv .= "<input type='hidden' name='action' value='delete'>";
-            $dv .= "<input type='submit' value='Delete'>";
+            $dv .= "<a href='/phpmotors/reviews?action=edit'>EDIT</a>";
+            $dv .= "<a href='/phpmotors/reviews?action=delete&reviewId=" . urlencode($vehicleReview['reviewId']) . "'>DELETE</a>";
             $dv .= '</li>';
         }
         $dv .= '</ul>';

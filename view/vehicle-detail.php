@@ -24,26 +24,27 @@
                 echo $message; }
             ?>
 
+            <p>&#8595;&#8595;&#8595;VEHICLE REVIEWS BELOW&#8595;&#8595;&#8595;</p>
+
             <div class="detail">
                 <?php if(isset($vehicleDetailDisplay)){
                     echo $vehicleDetailDisplay;}
                 ?>
 
-                <h1>Vehicle Reviews Below</h1>
                 <h2>Customer Reviews</h2>
 
                 <?php if (!isset($_SESSION['loggedin'])) { 
                         echo "<a href='/phpmotors/reviews/index.php?action=login'>Login to add a review</a>";    
-                    } else 
+                    } else {
                         echo '<form action="/phpmotors/reviews/index.php" method="post">   
                         <textarea name="reviewText" id="reviewText" rows="10" cols="50" placeholder="Add a review here" required></textarea><br>
-                        <input type="hidden" name="invId" value="' . $vehicles['invId'] . '">
-                        <input type="hidden" name="invMake" value="' . $vehicles['invMake'] . '">
-                        <input type="hidden" name="invModel" value="' . $vehicles['invModel'] . '">
+                        <input type="hidden" name="invId" value="' . isset($vehicles['invId']) .'">
+                        <input type="hidden" name="invMake" value="' . isset($vehicles['invMake']) . '">
+                        <input type="hidden" name="invModel" value="' . isset($vehicles['invModel']) . '">
                         <input type="hidden" name="clientId" value="' . $_SESSION['clientData']['clientId'] . '">
                         <input type="hidden" name="action" value="add">
                         <input type="submit" value="Submit Review">
-                        </form>';                              
+                        </form>';    }                          
                 ?>
 
                 <?php if(isset($reviewDisplay)) {
