@@ -64,6 +64,22 @@
         return $dv;
     }
 
+    function reviewDisplay($vehicleReviews){
+        
+        $dv = '<ul>';
+        foreach ($vehicleReviews as $vehicleReview) {
+            $dv .= '<li>';
+            $dv .= "$vehicleReview[reviewText]";
+            $dv .= "<input type='hidden' name='action' value='edit'>";
+            $dv .= "<input type='submit' value='Edit'>";
+            $dv .= "<input type='hidden' name='action' value='delete'>";
+            $dv .= "<input type='submit' value='Delete'>";
+            $dv .= '</li>';
+        }
+        $dv .= '</ul>';
+        return $dv;
+    }
+
     function vehicleDetail($vehicles, $imageThumb){
         $value = number_format($vehicles['invPrice']);
         $dv = '<ul id="inv-display">';           

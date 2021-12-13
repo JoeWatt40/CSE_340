@@ -46,8 +46,8 @@
                         </form>';                              
                 ?>
 
-                <?php if(isset($vehicleReviews)) {
-                        echo $vehicleReviews;}
+                <?php if(isset($reviewDisplay)) {
+                        echo $reviewDisplay;}
                     else 
                         echo 'no reviews yet';
                 ?>

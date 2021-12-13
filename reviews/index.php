@@ -38,11 +38,18 @@ switch ($action){
         $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
         $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
         $clientId = trim(filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT));
-       
+
+        if (empty($reviewText) || empty($invId) || empty($clientId)) {
+            $_SESSION['message'] = '<p class="red">Please provide information for all empty form fields.</p>';
+            header("Location: /phpmotors/vehicles?action=vehicle&invMake=" . $invMake . "&invModel=" . $invModel);
+            exit;
+        }
+
         $regOutcome = addReview($reviewText, $clientId, $invId);
-        $vehicleReview = getReviewByInvId($invId);
-        var_dump($vehicleReview);
-        exit;
+
+        $vehicleReviews = getReviewByInvId($invId);        
+        $reviewDisplay = reviewDisplay($vehicleReviews);
+
         if($regOutcome === 1){
             $message = "<p>Thank you so much for the reviewing the $invMake $invModel</p>";
             include '../view/vehicle-detail.php';

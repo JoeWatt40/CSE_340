@@ -16,13 +16,13 @@ function addReview($reviewText, $clientId, $invId) {
 
 function getReviewByInvId($invId) {
     $db = phpmotorsConnect();
-    $sql = 'SELECT reviewId, reviewText, reviewDate, invId FROM reviews';
+    $sql = 'SELECT reviewId, reviewText, reviewDate, invId FROM reviews WHERE invId = :invId';
     $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
     $vehicleReview = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $vehicleReview;
-
 }
 
 function getReviewByClientId() {
