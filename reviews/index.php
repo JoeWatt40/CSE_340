@@ -62,16 +62,19 @@ switch ($action){
         include '../view/vehicle-detail.php';
         break;
     case 'edit':
-        $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
-
-        if (empty($reviewId)) {
-            $message = '<p>Please edit the review before submitting</p>';
+        $reviewText = trim(filter_input(INPUT_GET, 'reviewText', FILTER_SANITIZE_STRING));
+                
+        if (empty($reviewText)) {
+            $message = '<h2>Please choose a review to edit.</h2>';
+            include '/phpmotors/vehicles?action=admin';
+        } else {
+            $message = '<h2>Enter your changes below</h2>';
+            $updateReview = editReview($reviewText);
+            include '../view/review-edit.php';
+            exit;
         }
-
-        $updatedReview = editReview($reviewId);
-        $vehicleReview = updateReview($reviewId);
-        
-        include '../view/vehicle-detail.php';        
+       
+        include '../view/review-edit.php';        
         break; 
     case 'delete': 
         $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);

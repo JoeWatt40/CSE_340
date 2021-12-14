@@ -1,15 +1,9 @@
-<?php
-if ($_SESSION['clientData']['clientLevel'] < 2) {
- header('location: /phpmotors/');
- exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $vehicles['invMake'] ?>   <?php echo $vehicles['invModel']?>
+    <title><?php echo $vehicles['invMake'] ?>   <?php echo $vehicles['invModel']?></title>
     <link rel="stylesheet" href="/phpmotors/css/main.css" media="screen">
     <link rel="stylesheet" href="/phpmotors/css/vehicle.css" media="screen">
 </head>
@@ -25,20 +19,17 @@ if ($_SESSION['clientData']['clientLevel'] < 2) {
             <?php echo $navList; ?>
         </nav>
 
-        <main>
-        
-        <h1><?php if(isset($invInfo['invMake']) && isset($invInfo['invModel'])){ 
-            echo "Modify $invInfo[invMake] $invInfo[invModel]";} 
-            elseif(isset($invMake) && isset($invModel)) { 
-            echo "Modify$invMake $invModel"; }?>
-        </h1>
-
-            <?php
-                if (isset($message)) {
-                echo $message;
-                }
+        <?php if(isset($message)){
+                echo $message; }
             ?>
-
+            
+        <main>
+            
+            <form>
+                <textarea name="reviewText" id="reviewText" rows="10" cols="50"><?php if(isset($reviewText)) { echo $reviewText;}?></textarea>
+                <input type="hidden" name="action" value="edit"><br>
+                <input type="submit" value="Update Review">
+            </form>
         </main>
         
         <footer>

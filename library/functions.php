@@ -70,7 +70,7 @@
         foreach ($vehicleReviews as $vehicleReview) {
             $dv .= '<li>';
             $dv .= "$vehicleReview[reviewText]";
-            $dv .= "<a href='/phpmotors/reviews?action=edit&reviewId=" .urlencode($vehicleReview['reviewId']) . "'>EDIT</a>";
+            $dv .= "<a href='/phpmotors/reviews?action=edit&reviewText=" .urlencode($vehicleReview['reviewText']) . "'>EDIT</a>";
             $dv .= "<a href='/phpmotors/reviews?action=delete&reviewId=" .urlencode($vehicleReview['reviewId']) . "'>DELETE</a>";
             $dv .= '</li>';
         }
@@ -78,9 +78,9 @@
         return $dv;
     }
 
-    function editReview($reviewId) {
+    function editReview($reviewText) {
         $dv = '<form>';
-        $dv .= '<textarea name="reviewText" id="reviewText" rows="10" cols="50" required>';
+        $dv .= "<textarea name='reviewText' id='reviewText' rows='10' cols='50' required>$reviewText</textarea>";
         $dv .= '</form>';
         return $dv;
     }
