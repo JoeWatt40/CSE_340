@@ -36,7 +36,15 @@ function getReviewByClientId($clientId) {
     return $vehicleReview;
 }
 
-function updateReview() {
+function updateReview($reviewId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT reviewId, reviewText, reviewDate, invId FROM reviews WHERE reviewId = :reviewId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':reviewId', $reviewId, PDO::PARAM_INT);
+    $stmt->execute();
+    $vehicleReview = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicleReview;
 
 }
 

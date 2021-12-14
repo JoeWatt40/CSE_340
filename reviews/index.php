@@ -62,7 +62,16 @@ switch ($action){
         include '../view/vehicle-detail.php';
         break;
     case 'edit':
-        include 'update';        
+        $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
+
+        if (empty($reviewId)) {
+            $message = '<p>Please edit the review before submitting</p>';
+        }
+
+        $updatedReview = editReview($reviewId);
+        $vehicleReview = updateReview($reviewId);
+        
+        include '../view/vehicle-detail.php';        
         break; 
     case 'delete': 
         $reviewId = filter_input(INPUT_GET, 'reviewId', FILTER_SANITIZE_NUMBER_INT);
