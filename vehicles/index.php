@@ -34,6 +34,9 @@ switch ($action){
         include '../view/add-classification.php';        
         break;
     case 'admin':
+        $clientId = $_SESSION['clientData']['clientId'];
+        $clientReviews = getReviewByClientId($clientId);
+        $reviewDisplay = reviewDisplay($clientReviews);
         include '../view/admin.php';        
         break;
     case 'addClass':

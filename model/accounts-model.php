@@ -33,6 +33,17 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     }
    }
 
+   function getReviewById($clientId) {
+    $db = phpmotorsConnect();
+    $sql = 'SELECT reviewId, reviewText, reviewDate, invId FROM reviews WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_INT);
+    $stmt->execute();
+    $vehicleReview = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicleReview;
+}
+
    function getClient($clientEmail){
     $db = phpmotorsConnect();
     $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, clientLevel, clientPassword FROM clients WHERE clientEmail = :clientEmail';

@@ -67,6 +67,10 @@ switch ($action){
         // Store the array into the session
         $_SESSION['clientData'] = $clientData;
        
+        $clientId = $_SESSION['clientData']['clientId'];
+        $clientReviews = getReviewById($clientId);
+        $reviewDisplay = reviewDisplay($clientReviews);
+
         include '../view/admin.php';        
         break; 
     case 'register':
